@@ -1,5 +1,7 @@
 # Generate RT Report
 
+[English](README.md) | [繁體中文](README.zh-TW.md)
+
 This repository contains a collection of scripts and tools for automated Microsoft Word (RT) report generation and manipulation. 
 
 ## Features

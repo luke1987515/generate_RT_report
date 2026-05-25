@@ -10,7 +10,8 @@ A complete automated Microsoft Word RT report generation solution. Includes repo
 
 | Tool | Description | Version | Status |
 |------|-------------|---------|--------|
-| **integrated_report_tool** | ⭐ Latest integrated version with all features | v1.0 | ✅ Recommended |
+| **🌟 generate_RT_report_final** | ⭐ NEW: Unified tool (Luke + Piero integration) | v1.0 | ✅ **RECOMMENDED** |
+| **integrated_report_tool** | Latest integrated version with all features | v1.0 | ✅ Alternative |
 | **generate_RT_report_piero** | Core report generation (v6 stable) | v6 | ✅ Stable |
 | **auto_report-table-date_piero** | Table date filling & section management | v1.0 | ✅ Stable |
 | **word_outline_filter** | Intelligent outline filtering | v8.0 | ✅ Latest |
@@ -30,47 +31,75 @@ A complete automated Microsoft Word RT report generation solution. Includes repo
 
 ```
 generate_RT_report/
-├── integrated_report_tool/           # ⭐ Recommended first choice
-│   ├── unified_report.py             # Integrated main program
-│   ├── create_config.py              # Config creation tool
-│   └── Report_Config.xlsx            # Multi-sheet configuration
+├── 🌟 generate_RT_report_final/      # NEW: Luke & Piero unified tool
+│   ├── main.py                        # Core program (7-stage processing)
+│   ├── QUICKSTART.md                  # Quick start guide (START HERE)
+│   ├── README.md                      # Complete documentation
+│   ├── EXAMPLES.md                    # Example files guide
+│   ├── Master_Log.xlsx                # Test data template
+│   └── Template.doc                   # Report template
 │
-├── generate_RT_report_piero/         # v6 stable version
+├── integrated_report_tool/            # Alternative integrated version
+│   ├── unified_report.py              # Integrated main program
+│   ├── create_config.py               # Config creation tool
+│   └── Report_Config.xlsx             # Multi-sheet configuration
+│
+├── generate_RT_report_piero/          # v6 stable version
 │   ├── auto_report.py
 │   ├── create_config.py
 │   └── Master_Log.xlsx
 │
-├── generate_RT_report_luke/          # Format preservation reference
-│   ├── docx_replace.py               # Run-level replacement
+├── generate_RT_report_luke/           # Format preservation reference
+│   ├── docx_replace.py                # Run-level replacement
 │   └── requirements.txt
 │
-├── auto_report-table-date_piero/     # Date filling stable version
+├── auto_report-table-date_piero/      # Date filling stable version
 │   ├── auto_report_table_date.py
 │   └── Master_Log.xlsx
 │
-├── auto_report-table_modify_piero/   # Table modification tool
+├── auto_report-table_modify_piero/    # Table modification tool
 │   └── auto_report_table_modify.py
 │
-├── auto_report_v33_claude/           # AI experimental version
+├── auto_report_v33_claude/            # AI experimental version (base for final)
 │   └── auto_report_v33.py
 │
-├── word_outline_filter/              # v8 latest version
+├── word_outline_filter/               # v8 latest version
 │   └── word_outline_filter.py
 │
-├── read_word_outline/                # Outline reading
+├── read_word_outline/                 # Outline reading
 │   └── read_word_outline.py
 │
-├── find_tables_in_word/              # Table detection
+├── find_tables_in_word/               # Table detection
 │   └── find_tables_in_word.py
 │
-└── doc_to_template/                  # Format conversion
+└── doc_to_template/                   # Format conversion
     ├── doc_to_template.py
     └── template_to_doc.py
 ```
 
 ## 🚀 Quick Start
 
-### Option A: Using Integrated Tool (Recommended)
+### 🌟 Option A: Using New Unified Tool (Recommended - START HERE!)
+
+```bash
+cd generate_RT_report_final
+# Read the guide first
+cat QUICKSTART.md           
+
+# Install dependencies
+pip install python-docx openpyxl pywin32
+
+# Prepare files
+# - Master_Log.xlsx  (fill with test data)
+# - Template.doc     (Word report template)
+
+# Generate report
+python main.py
+
+# Output: Final_Report.docx + report_generation.log
+```
+
+### Option B: Using Integrated Tool
 
 ```bash
 cd integrated_report_tool
@@ -78,14 +107,14 @@ python create_config.py           # Create configuration
 python unified_report.py          # Generate report
 ```
 
-### Option B: Using Piero Stable Version
+### Option C: Using Piero Stable Version
 
 ```bash
 cd generate_RT_report_piero
 python auto_report.py             # Generate report
 ```
 
-### Option C: Using Date Filling Tool
+### Option D: Using Date Filling Tool
 
 ```bash
 cd auto_report-table-date_piero

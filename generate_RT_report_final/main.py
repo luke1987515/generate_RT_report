@@ -1,12 +1,14 @@
 """
 統一報告生成工具 (Unified Report Generation Tool)
 
-功能：
-1. 從 Excel 讀取測試數據 (測項名稱、測試狀態、開始/結束時間)
-2. 將數據填入 Word 模板
-3. 清理廢棄測項的相關章節
-4. 清理空標題
-5. 更新報告 TOC
+處理流程 (7 階段)：
+1. 驗證   - 檢查輸入檔案是否存在
+2. 讀取   - 從 Excel 讀取測試數據
+3. 替換   - 替換 Word 模板中的佔位符
+4. 填充   - 在表格中填入測試數據
+5. 清理   - 刪除 "跳過" 測項的相關章節
+6. 優化   - 清理空標題和孤立段落
+7. 更新   - 更新報告目錄 (TOC)
 
 依賴：
 - python-docx
@@ -405,14 +407,14 @@ def main():
     # 階段 3: 替換文本
     replace_text_in_document(doc, replacements)
     
-    # 階段 4: 刪除跳過的章節
+    # 階段 4: 填充表格 (先填充表格)
+    fill_test_result_tables(doc, test_items)
+    
+    # 階段 5: 刪除跳過的章節 (再清理跳過的章節)
     delete_skipped_sections(doc, test_items)
     
-    # 階段 5: 清理空標題
+    # 階段 6: 清理空標題 (最後優化)
     cleanup_empty_headings(doc)
-    
-    # 階段 6: 填充表格
-    fill_test_result_tables(doc, test_items)
     
     # 儲存中間版本 (在 COM 更新之前)
     doc.save(OUTPUT_FILE)

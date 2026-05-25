@@ -192,89 +192,7 @@ def replace_text_in_document(doc, replacements):
         logger.error(f"文本替換失敗: {e}")
 
 
-# ============== 第 4 階段：刪除跳過的測項相關章節 ==============
-
-def delete_skipped_sections(doc, test_items):
-    """
-    刪除測試狀態為 '跳過' 的測項相應章節
-    策略: 根據測項名稱定位標題，刪除該標題及其內容
-    """
-    logger.log("清理跳過測項的章節...")
-    
-    skipped_items = [item['測項名稱'] for item in test_items if item.get('測試狀態') == SKIP_STATUS]
-    
-    if not skipped_items:
-        logger.log("✓ 無跳過測項")
-        return
-        
-    logger.log(f"跳過測項: {skipped_items}")
-    
-    try:
-        # 找到所有包含跳過測項名稱的段落
-        for skipped_name in skipped_items:
-            # 遍歷段落找到標題
-            for idx, para in enumerate(doc.paragraphs):
-                if skipped_name in para.text:
-                    # 這是標題，需要刪除
-                    p = para._element
-                    p.getparent().remove(p)
-                    logger.log(f"✓ 刪除章節: {skipped_name}")
-                    break
-                    
-    except Exception as e:
-        logger.error(f"刪除章節失敗: {e}")
-
-
-# ============== 第 5 階段：清理空標題 ==============
-
-def cleanup_empty_headings(doc):
-    """
-    3 次掃描清理空標題和孤立段落
-    """
-    logger.log("清理空標題和孤立段落...")
-    
-    try:
-        # 第 1 次掃描: 刪除空標題
-        paragraphs_to_delete = []
-        for para in doc.paragraphs:
-            if not para.text.strip():
-                # 檢查是否是標題樣式
-                if 'Heading' in para.style.name or para.style.name.startswith('Heading'):
-                    paragraphs_to_delete.append(para)
-                    
-        for para in paragraphs_to_delete:
-            p = para._element
-            p.getparent().remove(p)
-            
-        if paragraphs_to_delete:
-            logger.log(f"✓ 第 1 次掃描: 刪除 {len(paragraphs_to_delete)} 個空標題")
-            
-        # 第 2 次掃描: 連續空段落清理
-        consecutive_empties = 0
-        to_delete = []
-        for para in doc.paragraphs:
-            if not para.text.strip():
-                consecutive_empties += 1
-                if consecutive_empties > 1:
-                    to_delete.append(para)
-            else:
-                consecutive_empties = 0
-                
-        for para in to_delete:
-            p = para._element
-            p.getparent().remove(p)
-            
-        if to_delete:
-            logger.log(f"✓ 第 2 次掃描: 刪除 {len(to_delete)} 個連續空段落")
-            
-        # 第 3 次掃描: 檢查標題後是否直接跟著表格或標題
-        # (保留用於未來擴展)
-        
-    except Exception as e:
-        logger.error(f"清理空標題失敗: {e}")
-
-
-# ============== 第 6 階段：填充表格數據 ==============
+# ============== 第 4 階段：填充表格數據 ==============
 
 def fill_test_result_tables(doc, test_items):
     """
@@ -336,6 +254,88 @@ def fill_test_result_tables(doc, test_items):
             
     except Exception as e:
         logger.error(f"填充表格失敗: {e}")
+
+
+# ============== 第 5 階段：刪除跳過的測項相關章節 ==============
+
+def delete_skipped_sections(doc, test_items):
+    """
+    刪除測試狀態為 '跳過' 的測項相應章節
+    策略: 根據測項名稱定位標題，刪除該標題及其內容
+    """
+    logger.log("清理跳過測項的章節...")
+    
+    skipped_items = [item['測項名稱'] for item in test_items if item.get('測試狀態') == SKIP_STATUS]
+    
+    if not skipped_items:
+        logger.log("✓ 無跳過測項")
+        return
+        
+    logger.log(f"跳過測項: {skipped_items}")
+    
+    try:
+        # 找到所有包含跳過測項名稱的段落
+        for skipped_name in skipped_items:
+            # 遍歷段落找到標題
+            for idx, para in enumerate(doc.paragraphs):
+                if skipped_name in para.text:
+                    # 這是標題，需要刪除
+                    p = para._element
+                    p.getparent().remove(p)
+                    logger.log(f"✓ 刪除章節: {skipped_name}")
+                    break
+                    
+    except Exception as e:
+        logger.error(f"刪除章節失敗: {e}")
+
+
+# ============== 第 6 階段：清理空標題 ==============
+
+def cleanup_empty_headings(doc):
+    """
+    3 次掃描清理空標題和孤立段落
+    """
+    logger.log("清理空標題和孤立段落...")
+    
+    try:
+        # 第 1 次掃描: 刪除空標題
+        paragraphs_to_delete = []
+        for para in doc.paragraphs:
+            if not para.text.strip():
+                # 檢查是否是標題樣式
+                if 'Heading' in para.style.name or para.style.name.startswith('Heading'):
+                    paragraphs_to_delete.append(para)
+                    
+        for para in paragraphs_to_delete:
+            p = para._element
+            p.getparent().remove(p)
+            
+        if paragraphs_to_delete:
+            logger.log(f"✓ 第 1 次掃描: 刪除 {len(paragraphs_to_delete)} 個空標題")
+            
+        # 第 2 次掃描: 連續空段落清理
+        consecutive_empties = 0
+        to_delete = []
+        for para in doc.paragraphs:
+            if not para.text.strip():
+                consecutive_empties += 1
+                if consecutive_empties > 1:
+                    to_delete.append(para)
+            else:
+                consecutive_empties = 0
+                
+        for para in to_delete:
+            p = para._element
+            p.getparent().remove(p)
+            
+        if to_delete:
+            logger.log(f"✓ 第 2 次掃描: 刪除 {len(to_delete)} 個連續空段落")
+            
+        # 第 3 次掃描: 檢查標題後是否直接跟著表格或標題
+        # (保留用於未來擴展)
+        
+    except Exception as e:
+        logger.error(f"清理空標題失敗: {e}")
 
 
 # ============== 第 7 階段：更新 TOC ==============

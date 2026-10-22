@@ -6,22 +6,34 @@
 
 ## 🎯 核心功能
 
-### 生產版工具 (推薦使用)
+### 🌟 推薦工具
 
 | 工具 | 說明 | 版本 | 狀態 |
 |------|------|------|------|
-| **🌟 generate_RT_report_final** | ⭐ 新：統一工具（Luke + Piero 整合） | v1.0 | ✅ **推薦** |
-| **integrated_report_tool** | 最新整合版，結合所有功能 | v1.0 | ✅ 替代方案 |
-| **generate_RT_report_piero** | 核心報告生成（v6 穩定版） | v6 | ✅ 穩定 |
-| **auto_report-table-date_piero** | 表格日期填入與章節管理 | v1.0 | ✅ 穩定 |
-| **word_outline_filter** | 大綱智慧過濾 | v8.0 | ✅ 最新 |
+| **generate_RT_report_final** | 統一工具（Luke + Piero 整合），7 階段處理 | v1.0 | ✅ **推薦 — 請使用此工具** |
+
+### 獨立工具 (穩定)
+
+| 工具 | 說明 | 狀態 |
+|------|------|------|
+| **auto_report-table-date_piero** | 表格日期填入與章節管理 | ✅ 穩定 |
+| **word_outline_filter** | 大綱智慧過濾 | ✅ 最新 (v8.0) |
+
+### 舊版報告生成器 (僅供參考)
+
+已被 `generate_RT_report_final` 取代，保留供參考。
+
+| 工具 | 說明 | 版本 |
+|------|------|------|
+| **integrated_report_tool** | 早期整合版 | v1.0 |
+| **generate_RT_report_piero** | 核心報告生成（v6） | v6 |
+| **auto_report_v33_claude** | AI 輔助實驗版（`final` 的程式碼基礎） | v33 |
 
 ### 輔助工具 (補充功能)
 
 | 工具 | 說明 | 用途 |
 |------|------|------|
 | **generate_RT_report_luke** | 格式保留替換邏輯 | Run 層級精細控制 |
-| **auto_report_v33_claude** | AI 輔助報告生成（實驗版） | 智慧信息識別 |
 | **auto_report-table_modify_piero** | 表格內容修改工具 | 修改表格數值和狀態 |
 | **find_tables_in_word** | 表格檢測與分析 | 表格位置和結構分析 |
 | **read_word_outline** | 大綱讀取工具 | 文檔結構解析 |
@@ -36,12 +48,12 @@ generate_RT_report/
 │   ├── README.md                      # 完整文檔
 │   └── EXAMPLES.md                    # 範例文件指南
 │
-├── integrated_report_tool/           # 替代整合版
+├── integrated_report_tool/           # 舊版 (已被 final 取代)
 │   ├── unified_report.py             # 整合主程式
 │   ├── create_config.py              # 配置創建工具
 │   └── Report_Config.xlsx            # 多 Sheet 配置
 │
-├── generate_RT_report_piero/         # v6 穩定版
+├── generate_RT_report_piero/         # 舊版 (v6)
 │   ├── auto_report.py
 │   └── create_config.py
 │
@@ -55,7 +67,7 @@ generate_RT_report/
 ├── auto_report-table_modify_piero/   # 表格修改工具
 │   └── auto_report_table_modify.py
 │
-├── auto_report_v33_claude/           # AI 實驗版
+├── auto_report_v33_claude/           # 舊版 (final 的程式碼基礎)
 │   └── auto_report_v33.py
 │
 ├── word_outline_filter/              # v8 最新版本
@@ -84,7 +96,9 @@ pip install python-docx openpyxl pywin32
 python main.py                    # 輸出: Final_Report.docx
 ```
 
-### 選項 B: 使用整合工具
+### 選項 B (舊版): 使用整合工具
+
+> ⚠️ 已被 `generate_RT_report_final` 取代 — 保留供參考。
 
 ```bash
 cd integrated_report_tool
@@ -92,7 +106,9 @@ python create_config.py           # 創建配置
 python unified_report.py          # 執行報告生成
 ```
 
-### 選項 C: 使用 Piero 穩定版
+### 選項 C (舊版): 使用 Piero 版本
+
+> ⚠️ 已被 `generate_RT_report_final` 取代 — 保留供參考。
 
 ```bash
 cd generate_RT_report_piero
@@ -112,13 +128,29 @@ python auto_report_table_date.py  # 填入日期和時間
 
 | 使用場景 | 推薦工具 | 理由 |
 |---------|---------|------|
-| 新項目，需要完整功能 | **integrated_report_tool** | 功能最完整、最新、維護性最好 |
-| 需要簡單的報告生成 | generate_RT_report_piero | 穩定可靠，功能完整 |
+| 報告生成（任何場合） | **generate_RT_report_final** | 唯一推薦入口，7 階段處理 |
 | 只需填寫日期和時間 | auto_report-table-date_piero | 專用工具，功能精準 |
 | 需要精細格式控制 | generate_RT_report_luke | Run 層級替換，格式完全保留 |
-| 需要實驗 AI 功能 | auto_report_v33_claude | 最新 AI 輔助，功能豐富 |
 | 需要分析表格結構 | find_tables_in_word | 專用表格分析工具 |
 | 需要過濾大綱內容 | word_outline_filter | 最新版本（v8.0），功能強大 |
+
+## 📄 Master_Log.xlsx 欄位規格 (generate_RT_report_final)
+
+`main.py` 讀取 `Master_Log.xlsx` 的**第一個工作表**（active sheet）；第 1 列必須為欄位標題。必要欄位：
+
+| 欄位 | 說明 |
+|------|------|
+| `測項名稱` | 測試項目名稱。必須與範本中的標題文字一致（用於定位、保留或刪除章節） |
+| `測試狀態` | 測試狀態，例如 `Pass`。值為 `跳過` 的列會連同範本中對應章節一併刪除 |
+| `開始時間` | 開始時間 |
+| `結束時間` | 結束時間 |
+| `Physical Damage` | 物理損傷檢查結果 |
+| `Functional Check` | 功能檢查結果 |
+
+注意：
+- 沒有 `測項名稱` 值的列會被忽略。
+- 額外欄位（例如 `測項編號`、`測試結果`、`照片路徑`）允許存在，生成器不會使用。
+- 範本（`Template.doc`）應包含佔位符 `{Report_Title}`、`{Report_Date}`、`{Author}`、**3.1 "Test Item Result"** 表格（4 欄以上：名稱 / 開始 / 結束 / 狀態），以及含 "Physical Damage" / "Functional Check" 標題的 4.x 詳細結果表格。
 
 ## 🔄 工作流程示例
 
@@ -130,8 +162,8 @@ python auto_report_table_date.py  # 填入日期和時間
 2. 準備 Word 範本 (Template.doc 或 Template.docx)
    ↓
 3. 執行報告生成
-   - 使用 integrated_report_tool (推薦)
-   - 或 generate_RT_report_piero
+   - 使用 generate_RT_report_final (推薦)
+   - 舊版替代：integrated_report_tool / generate_RT_report_piero
    ↓
 4. （可選）使用 auto_report-table-date_piero 填入日期
    ↓
@@ -189,6 +221,11 @@ python Scripts/pywin32_postinstall.py -install
 
 ## 📝 版本歷史與整理
 
+### 工具收斂與欄位規格 (2026-10)
+- ✅ `generate_RT_report_final` 為唯一推薦的報告生成工具
+- ✅ `integrated_report_tool`、`generate_RT_report_piero`、`auto_report_v33_claude` 標記為**舊版**（僅供參考）
+- ✅ 新增 `Master_Log.xlsx` 欄位規格（見上方）
+
 ### 隱私淨化 (2026-10)
 - ✅ 移除內部報告範本與範例數據文件（含內部專案資訊）
 - ✅ 輸入文件（`Master_Log.xlsx`、`Template.doc`）需由使用者自行提供
@@ -228,6 +265,6 @@ python Scripts/pywin32_postinstall.py -install
 ---
 
 **推薦工作流程**: 
-1. 首選 `integrated_report_tool` (最新最完整)
-2. 備選 `generate_RT_report_piero` (穩定可靠)
-3. 根據特定需求組合使用其他工具
+1. 使用 `generate_RT_report_final`（唯一推薦入口）
+2. 按需搭配獨立工具（日期填入、大綱過濾）
+3. 舊版生成器（`integrated_report_tool`、`generate_RT_report_piero`）僅供參考

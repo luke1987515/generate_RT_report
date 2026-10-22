@@ -1,4 +1,5 @@
 # 自動化報告生成工具 v33 (Claude 版本)
+> ⚠️ **Legacy / 舊版** — Superseded by `generate_RT_report_final`（已被 generate_RT_report_final 取代），retained for reference only（僅供參考）.
 
 **版本**: v33  
 **開發者**: Claude AI  

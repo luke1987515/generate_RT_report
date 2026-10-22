@@ -1,4 +1,5 @@
 # 整合式報告生成工具 (Unified Report Tool)
+> ⚠️ **Legacy / 舊版** — Superseded by `generate_RT_report_final`（已被 generate_RT_report_final 取代），retained for reference only（僅供參考）.
 
 **版本**: v1.0 整合版  
 **開發者**: 項目團隊（整合 Luke + Piero 的工作）  

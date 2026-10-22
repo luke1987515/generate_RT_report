@@ -6,22 +6,34 @@ A complete automated Microsoft Word RT report generation solution. Includes repo
 
 ## 🎯 Core Features
 
-### Production Tools (Recommended)
+### 🌟 Recommended Tool
 
 | Tool | Description | Version | Status |
 |------|-------------|---------|--------|
-| **🌟 generate_RT_report_final** | ⭐ NEW: Unified tool (Luke + Piero integration) | v1.0 | ✅ **RECOMMENDED** |
-| **integrated_report_tool** | Latest integrated version with all features | v1.0 | ✅ Alternative |
-| **generate_RT_report_piero** | Core report generation (v6 stable) | v6 | ✅ Stable |
-| **auto_report-table-date_piero** | Table date filling & section management | v1.0 | ✅ Stable |
-| **word_outline_filter** | Intelligent outline filtering | v8.0 | ✅ Latest |
+| **generate_RT_report_final** | Unified tool (Luke + Piero integration), 7-stage processing | v1.0 | ✅ **RECOMMENDED — use this** |
+
+### Standalone Utilities (Stable)
+
+| Tool | Description | Status |
+|------|-------------|--------|
+| **auto_report-table-date_piero** | Table date filling & section management | ✅ Stable |
+| **word_outline_filter** | Intelligent outline filtering | ✅ Latest (v8.0) |
+
+### Legacy Generators (Reference Only)
+
+Superseded by `generate_RT_report_final`; kept for reference.
+
+| Tool | Description | Version |
+|------|-------------|---------|
+| **integrated_report_tool** | Earlier integrated version | v1.0 |
+| **generate_RT_report_piero** | Core report generation (v6) | v6 |
+| **auto_report_v33_claude** | AI-assisted experimental version (code base of `final`) | v33 |
 
 ### Supplementary Tools
 
 | Tool | Description | Purpose |
 |------|-------------|---------|
 | **generate_RT_report_luke** | Format-preserving replacement logic | Run-level fine control |
-| **auto_report_v33_claude** | AI-assisted report generation (experimental) | Intelligent information recognition |
 | **auto_report-table_modify_piero** | Table content modification tool | Modify table values and status |
 | **find_tables_in_word** | Table detection and analysis | Table location and structure analysis |
 | **read_word_outline** | Outline reading tool | Document structure parsing |
@@ -36,12 +48,12 @@ generate_RT_report/
 │   ├── README.md                      # Complete documentation
 │   └── EXAMPLES.md                    # Example files guide
 │
-├── integrated_report_tool/            # Alternative integrated version
+├── integrated_report_tool/            # LEGACY (superseded by final)
 │   ├── unified_report.py              # Integrated main program
 │   ├── create_config.py               # Config creation tool
 │   └── Report_Config.xlsx             # Multi-sheet configuration
 │
-├── generate_RT_report_piero/          # v6 stable version
+├── generate_RT_report_piero/          # LEGACY (v6)
 │   ├── auto_report.py
 │   └── create_config.py
 │
@@ -55,7 +67,7 @@ generate_RT_report/
 ├── auto_report-table_modify_piero/    # Table modification tool
 │   └── auto_report_table_modify.py
 │
-├── auto_report_v33_claude/            # AI experimental version (base for final)
+├── auto_report_v33_claude/            # LEGACY (code base of final)
 │   └── auto_report_v33.py
 │
 ├── word_outline_filter/               # v8 latest version
@@ -90,7 +102,9 @@ python main.py
 # Output: Final_Report.docx + report_generation.log
 ```
 
-### Option B: Using Integrated Tool
+### Option B (Legacy): Using Integrated Tool
+
+> ⚠️ Superseded by `generate_RT_report_final` — kept for reference.
 
 ```bash
 cd integrated_report_tool
@@ -98,7 +112,9 @@ python create_config.py           # Create configuration
 python unified_report.py          # Generate report
 ```
 
-### Option C: Using Piero Stable Version
+### Option C (Legacy): Using Piero Version
+
+> ⚠️ Superseded by `generate_RT_report_final` — kept for reference.
 
 ```bash
 cd generate_RT_report_piero
@@ -118,13 +134,29 @@ python auto_report_table_date.py  # Fill dates and times
 
 | Use Case | Recommended Tool | Reason |
 |----------|------------------|--------|
-| New project, need complete features | **integrated_report_tool** | Most complete, latest, best maintainability |
-| Need simple report generation | generate_RT_report_piero | Stable, reliable, feature-complete |
+| Report generation (any case) | **generate_RT_report_final** | Single recommended entry point, 7-stage processing |
 | Only need date/time filling | auto_report-table-date_piero | Dedicated tool, precise functionality |
 | Need fine format control | generate_RT_report_luke | Run-level replacement, complete format preservation |
-| Need to experiment with AI features | auto_report_v33_claude | Latest AI-assisted, feature-rich |
 | Need to analyze table structure | find_tables_in_word | Dedicated table analysis tool |
 | Need to filter outline content | word_outline_filter | Latest version (v8.0), powerful features |
+
+## 📄 Master_Log.xlsx Field Specification (generate_RT_report_final)
+
+`main.py` reads the **active sheet** of `Master_Log.xlsx`; row 1 must be the column headers. Required columns:
+
+| Column | Description |
+|--------|-------------|
+| `測項名稱` | Test item name. Must match the heading text in the template (used to locate and keep/delete chapters) |
+| `測試狀態` | Test status, e.g. `Pass`. Rows with `跳過` have their template chapters removed |
+| `開始時間` | Start time |
+| `結束時間` | End time |
+| `Physical Damage` | Physical damage check result |
+| `Functional Check` | Functional check result |
+
+Notes:
+- Rows without a `測項名稱` value are ignored.
+- Extra columns (e.g. `測項編號`, `測試結果`, `照片路徑`) are allowed and simply not used by the generator.
+- The template (`Template.doc`) should contain the placeholders `{Report_Title}`, `{Report_Date}`, `{Author}`, a **3.1 "Test Item Result"** table (4+ columns: name / start / end / status), and 4.x detail tables with "Physical Damage" / "Functional Check" headers.
 
 ## 🔄 Workflow Example
 
@@ -136,8 +168,8 @@ python auto_report_table_date.py  # Fill dates and times
 2. Prepare Word template (Template.doc or Template.docx)
    ↓
 3. Run report generation
-   - Use integrated_report_tool (recommended)
-   - Or generate_RT_report_piero
+   - Use generate_RT_report_final (recommended)
+   - Legacy alternatives: integrated_report_tool / generate_RT_report_piero
    ↓
 4. (Optional) Use auto_report-table-date_piero to fill dates
    ↓
@@ -195,6 +227,11 @@ python Scripts/pywin32_postinstall.py -install
 
 ## 📝 Version History & Cleanup
 
+### Convergence & Field Spec (2026-10)
+- ✅ `generate_RT_report_final` is now the single recommended report generator
+- ✅ `integrated_report_tool`, `generate_RT_report_piero`, `auto_report_v33_claude` marked **legacy** (reference only)
+- ✅ Added `Master_Log.xlsx` field specification (see above)
+
 ### Privacy Sanitization (2026-10)
 - ✅ Removed internal report templates and sample data files (contained internal project information)
 - ✅ Input files (`Master_Log.xlsx`, `Template.doc`) must be provided by the user
@@ -234,6 +271,6 @@ This project content is for internal use. Please ensure you understand the requi
 ---
 
 **Recommended Workflow**: 
-1. First choice: `integrated_report_tool` (latest and most complete)
-2. Alternative: `generate_RT_report_piero` (stable and reliable)
-3. Combine other tools based on specific needs
+1. Use `generate_RT_report_final` (the single recommended entry point)
+2. Use standalone utilities (date filling, outline filter) as needed
+3. Legacy generators (`integrated_report_tool`, `generate_RT_report_piero`) are kept for reference only

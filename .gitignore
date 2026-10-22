@@ -1,0 +1,11 @@
+# Office temp / lock files
+~$*
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Logs & outputs
+*.log

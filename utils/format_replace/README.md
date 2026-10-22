@@ -64,7 +64,7 @@ python docx_replace.py
 ## 📁 文件結構
 
 ```
-generate_RT_report_luke/
+utils/format_replace/
 ├── docx_replace.py                 # 主程式（核心算法）
 ├── requirements.txt                # 依賴包列表
 ├── data.xlsx                       # 配置文件（需自行準備）
@@ -116,8 +116,8 @@ for run in paragraph.runs:
 
 ## 🤝 相關工具
 
-- [generate_RT_report_piero](../generate_RT_report_piero/) - Piero 穩定版
-- [integrated_report_tool](../integrated_report_tool/) - 整合工具
+- [legacy/piero_v6](../legacy/piero_v6/) - Piero 穩定版
+- [legacy/integrated_report](../legacy/integrated_report/) - 整合工具
 
 ## 📞 技術支援
 

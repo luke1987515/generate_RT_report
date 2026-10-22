@@ -1,4 +1,4 @@
-# RT 報告自動化工具 (日期填寫版) - auto_report-table-date_piero
+# RT 報告自動化工具 (日期填寫版) - utils/date_filler
 
 這是一個用於自動化產生 Word 測試報告的 Python 工具。它能根據 Excel (Master Log) 的內容，自動處理 Word 範本中的章節刪除、表格列更新以及測試日期填寫。
 

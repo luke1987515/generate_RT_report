@@ -1,5 +1,5 @@
 # 自動化報告生成工具 v33 (Claude 版本)
-> ⚠️ **Legacy / 舊版** — Superseded by `generate_RT_report_final`（已被 generate_RT_report_final 取代），retained for reference only（僅供參考）.
+> ⚠️ **Legacy / 舊版** — Superseded by `report_generator`（已被 report_generator 取代），retained for reference only（僅供參考）.
 
 **版本**: v33  
 **開發者**: Claude AI  
@@ -68,7 +68,7 @@ python auto_report_v33.py
 ## 📁 文件結構
 
 ```
-auto_report_v33_claude/
+legacy/v33_claude/
 ├── auto_report_v33.py              # 主程式（Claude 開發）
 ├── Master_Log.xlsx                 # 配置文件（需自行準備）
 ├── Template.doc                    # Word 範本（需自行準備）
@@ -105,9 +105,9 @@ auto_report_v33_claude/
 
 ## 🤝 相關工具
 
-- [integrated_report_tool](../integrated_report_tool/) - 整合生產版工具
-- [auto_report-table-date_piero](../auto_report-table-date_piero/) - 穩定版日期填入
-- [generate_RT_report_piero](../generate_RT_report_piero/) - 穩定版報告生成
+- [legacy/integrated_report](../legacy/integrated_report/) - 整合生產版工具
+- [utils/date_filler](../utils/date_filler/) - 穩定版日期填入
+- [legacy/piero_v6](../legacy/piero_v6/) - 穩定版報告生成
 
 ## 💡 反饋與建議
 

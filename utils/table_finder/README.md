@@ -30,7 +30,7 @@
 python find_tables_in_word.py Template.doc
 
 # 方式 2: Python 代碼使用
-from find_tables_in_word import TableFinder
+from utils/table_finder import TableFinder
 
 finder = TableFinder('Template.doc')
 tables = finder.find_all_tables()
@@ -68,7 +68,7 @@ for table_info in tables:
 ## 📁 文件結構
 
 ```
-find_tables_in_word/
+utils/table_finder/
 ├── find_tables_in_word.py          # 主程式
 ├── Template.doc                    # Word 範本（需自行準備）
 ├── Template.docx                   # Word 範本 docx 版（需自行準備）
@@ -125,8 +125,8 @@ find_tables_in_word/
 
 ## 🤝 相關工具
 
-- [word_outline_filter](../word_outline_filter/) - 大綱過濾
-- [read_word_outline](../read_word_outline/) - 大綱讀取
+- [utils/outline_filter](../utils/outline_filter/) - 大綱過濾
+- [utils/outline_reader](../utils/outline_reader/) - 大綱讀取
 
 ## 📞 技術支援
 

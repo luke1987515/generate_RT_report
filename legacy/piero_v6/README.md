@@ -1,5 +1,5 @@
 # 核心報告生成工具 - Piero 版本 (v6)
-> ⚠️ **Legacy / 舊版** — Superseded by `generate_RT_report_final`（已被 generate_RT_report_final 取代），retained for reference only（僅供參考）.
+> ⚠️ **Legacy / 舊版** — Superseded by `report_generator`（已被 report_generator 取代），retained for reference only（僅供參考）.
 
 **版本**: v6  
 **開發者**: Piero  
@@ -73,7 +73,7 @@ SKIP_KEYWORD = '跳過'
 ## 📁 文件結構
 
 ```
-generate_RT_report_piero/
+legacy/piero_v6/
 ├── auto_report.py                  # 主程式
 ├── create_config.py                # 配置創建工具
 ├── Master_Log.xlsx                 # 配置文件（需自行準備）
@@ -128,9 +128,9 @@ generate_RT_report_piero/
 
 ## 🤝 相關工具
 
-- [generate_RT_report_luke](../generate_RT_report_luke/) - Luke 版本（Run 層級替換）
-- [integrated_report_tool](../integrated_report_tool/) - 最新整合版
-- [auto_report-table-date_piero](../auto_report-table-date_piero/) - 日期填入工具
+- [utils/format_replace](../utils/format_replace/) - Luke 版本（Run 層級替換）
+- [legacy/integrated_report](../legacy/integrated_report/) - 最新整合版
+- [utils/date_filler](../utils/date_filler/) - 日期填入工具
 
 ## 📞 技術支援
 

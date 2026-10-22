@@ -148,15 +148,15 @@ C:\Users\Administrator\Desktop\luke\generate_RT_report
 這是一個有 Git 版控的專案資料夾，看起來是 Luke（你） 和 Piero 共同在這裡做各種版本的實驗與開發，裡面有很多個子資料夾，各自代表不同的嘗試：
 
 子資料夾	說明
-auto_report-table-date_piero/	Piero 原版的腳本（最初版）
-generate_RT_report_piero/ _piero_2/	Piero 的報告產生器版本
-generate_RT_report_luke/	Luke 的版本
-integrated_report_tool/	整合版工具
-find_tables_in_word/ read_word_outline/ 等	各種輔助工具
+utils/date_filler/	Piero 原版的腳本（最初版）
+legacy/piero_v6/ _piero_2/	Piero 的報告產生器版本
+utils/format_replace/	Luke 的版本
+legacy/integrated_report/	整合版工具
+utils/table_finder/ utils/outline_reader/ 等	各種輔助工具
 💡 我的建議
 完全贊成你的想法！建議直接在這個資料夾底下，新增一個子資料夾，例如：
 
-C:\Users\Administrator\Desktop\luke\generate_RT_report\auto_report_v33_claude\
+C:\Users\Administrator\Desktop\luke\generate_RT_report\legacy/v33_claude\
 把我們在 scratch 改好的這幾個檔案放進去：
 
 python auto_report-table-date copy.py（主程式）

@@ -4,7 +4,7 @@
 
 這是 Luke 和 Piero 協作開發的**統一報告生成工具**，用於自動化測試報告的生成流程。
 
-基於 Luke 和 Piero 的多個版本整合而成，提取了 **auto_report_v33_claude** 的完整功能集。
+基於 Luke 和 Piero 的多個版本整合而成，提取了 **legacy/v33_claude** 的完整功能集。
 
 ### 主要特性
 - ✅ 從 Excel 讀取測試數據
@@ -20,7 +20,7 @@
 
 ### 版本信息
 - **當前版本**: v1.0
-- **基於**: auto_report_v33_claude (含完整功能集)
+- **基於**: legacy/v33_claude (含完整功能集)
 - **最後更新**: 2024
 
 ---
@@ -330,19 +330,19 @@ SKIP_STATUS = "跳過"
 
 ## 參考資料
 
-- **原始版本**: [auto_report_v33_claude](../auto_report_v33_claude/)
-- **配置驅動參考**: [integrated_report_tool](../integrated_report_tool/)
+- **原始版本**: [legacy/v33_claude](../legacy/v33_claude/)
+- **配置驅動參考**: [legacy/integrated_report](../legacy/integrated_report/)
 - **相關工具**:
-  - [find_tables_in_word](../find_tables_in_word/) - 表格檢測
-  - [read_word_outline](../read_word_outline/) - 大綱讀取
-  - [word_outline_filter](../word_outline_filter/) - 大綱過濾
+  - [utils/table_finder](../utils/table_finder/) - 表格檢測
+  - [utils/outline_reader](../utils/outline_reader/) - 大綱讀取
+  - [utils/outline_filter](../utils/outline_filter/) - 大綱過濾
 
 ---
 
 ## 授權和貢獻
 
 - **開發**: Luke, Piero
-- **整合代碼**: 基於 auto_report_v33_claude
+- **整合代碼**: 基於 legacy/v33_claude
 - **維護**: 內部使用工具
 
 ### 更新記錄

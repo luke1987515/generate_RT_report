@@ -72,7 +72,7 @@ python word_outline_filter.py Template.doc --keywords "Module,Test" --level 2
 ## 📁 文件結構
 
 ```
-word_outline_filter/
+utils/outline_filter/
 ├── word_outline_filter.py          # 主程式
 ├── outline.xlsx                    # 過濾規則配置
 ├── outline_new.xlsx                # 新的配置版本
@@ -182,8 +182,8 @@ filter_rules = {
 
 ## 🤝 相關工具
 
-- [read_word_outline](../read_word_outline/) - 大綱讀取工具
-- [find_tables_in_word](../find_tables_in_word/) - 表格檢測
+- [utils/outline_reader](../utils/outline_reader/) - 大綱讀取工具
+- [utils/table_finder](../utils/table_finder/) - 表格檢測
 
 ## 📞 技術支援
 

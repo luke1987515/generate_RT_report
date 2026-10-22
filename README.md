@@ -10,74 +10,72 @@ A complete automated Microsoft Word RT report generation solution. Includes repo
 
 | Tool | Description | Version | Status |
 |------|-------------|---------|--------|
-| **generate_RT_report_final** | Unified tool (Luke + Piero integration), 7-stage processing | v1.0 | ✅ **RECOMMENDED — use this** |
+| **report_generator** | Unified tool (Luke + Piero integration), 7-stage processing | v1.0 | ✅ **RECOMMENDED — use this** |
 
 ### Standalone Utilities (Stable)
 
 | Tool | Description | Status |
 |------|-------------|--------|
-| **auto_report-table-date_piero** | Table date filling & section management | ✅ Stable |
-| **word_outline_filter** | Intelligent outline filtering | ✅ Latest (v8.0) |
+| **utils/date_filler** | Table date filling & section management | ✅ Stable |
+| **utils/outline_filter** | Intelligent outline filtering | ✅ Latest (v8.0) |
 
 ### Legacy Generators (Reference Only)
 
-Superseded by `generate_RT_report_final`; kept for reference.
+Superseded by `report_generator`; kept for reference.
 
 | Tool | Description | Version |
 |------|-------------|---------|
-| **integrated_report_tool** | Earlier integrated version | v1.0 |
-| **generate_RT_report_piero** | Core report generation (v6) | v6 |
-| **auto_report_v33_claude** | AI-assisted experimental version (code base of `final`) | v33 |
+| **legacy/integrated_report** | Earlier integrated version | v1.0 |
+| **legacy/piero_v6** | Core report generation (v6) | v6 |
+| **legacy/v33_claude** | AI-assisted experimental version (code base of `final`) | v33 |
 
 ### Supplementary Tools
 
 | Tool | Description | Purpose |
 |------|-------------|---------|
-| **generate_RT_report_luke** | Format-preserving replacement logic | Run-level fine control |
-| **auto_report-table_modify_piero** | Table content modification tool | Modify table values and status |
-| **find_tables_in_word** | Table detection and analysis | Table location and structure analysis |
-| **read_word_outline** | Outline reading tool | Document structure parsing |
+| **utils/format_replace** | Format-preserving replacement logic | Run-level fine control |
+| **utils/table_modifier** | Table content modification tool | Modify table values and status |
+| **utils/table_finder** | Table detection and analysis | Table location and structure analysis |
+| **utils/outline_reader** | Outline reading tool | Document structure parsing |
 
 ## 📁 Project Structure
 
 ```
 generate_RT_report/
-├── 🌟 generate_RT_report_final/      # NEW: Luke & Piero unified tool
-│   ├── main.py                        # Core program (7-stage processing)
-│   ├── QUICKSTART.md                  # Quick start guide (START HERE)
-│   ├── README.md                      # Complete documentation
-│   └── EXAMPLES.md                    # Example files guide
+├── 🌟 report_generator/            # Unified report generator (RECOMMENDED)
+│   ├── main.py                      # Core program (7-stage processing)
+│   ├── QUICKSTART.md                # Quick start guide (START HERE)
+│   ├── README.md                    # Complete documentation
+│   └── EXAMPLES.md                  # Example files guide
 │
-├── integrated_report_tool/            # LEGACY (superseded by final)
-│   ├── unified_report.py              # Integrated main program
-│   ├── create_config.py               # Config creation tool
-│   └── Report_Config.xlsx             # Multi-sheet configuration
+├── utils/                           # Standalone single-purpose tools
+│   ├── date_filler/                 # Table date filling & section management
+│   │   └── auto_report_table_date.py
+│   ├── outline_filter/              # Intelligent outline filtering (v8.0)
+│   │   └── word_outline_filter.py
+│   ├── table_modifier/              # Table content modification
+│   │   └── auto_report_table_modify.py
+│   ├── table_finder/                # Table detection and analysis
+│   │   └── find_tables_in_word.py
+│   ├── outline_reader/              # Outline reading / structure parsing
+│   │   └── read_word_outline.py
+│   └── format_replace/              # Run-level format-preserving replacement
+│       ├── docx_replace.py
+│       └── requirements.txt
 │
-├── generate_RT_report_piero/          # LEGACY (v6)
-│   ├── auto_report.py
-│   └── create_config.py
+├── legacy/                          # Superseded by report_generator — frozen, reference only
+│   ├── integrated_report/           # Earlier integrated version (v1.0)
+│   │   ├── unified_report.py
+│   │   ├── create_config.py
+│   │   └── Report_Config.xlsx
+│   ├── piero_v6/                    # Core report generation (v6)
+│   │   ├── auto_report.py
+│   │   └── create_config.py
+│   └── v33_claude/                  # AI-assisted experimental (code base of report_generator)
+│       └── auto_report_v33.py
 │
-├── generate_RT_report_luke/           # Format preservation reference
-│   ├── docx_replace.py                # Run-level replacement
-│   └── requirements.txt
-│
-├── auto_report-table-date_piero/      # Date filling stable version
-│   └── auto_report_table_date.py
-│
-├── auto_report-table_modify_piero/    # Table modification tool
-│   └── auto_report_table_modify.py
-│
-├── auto_report_v33_claude/            # LEGACY (code base of final)
-│   └── auto_report_v33.py
-│
-├── word_outline_filter/               # v8 latest version
-│   └── word_outline_filter.py
-│
-├── read_word_outline/                 # Outline reading
-│   └── read_word_outline.py
-│
-└── find_tables_in_word/               # Table detection
-    └── find_tables_in_word.py
+├── README.md
+└── README.zh-TW.md
 ```
 
 ## 🚀 Quick Start
@@ -85,7 +83,7 @@ generate_RT_report/
 ### 🌟 Option A: Using New Unified Tool (Recommended - START HERE!)
 
 ```bash
-cd generate_RT_report_final
+cd report_generator
 # Read the guide first
 cat QUICKSTART.md           
 
@@ -104,27 +102,27 @@ python main.py
 
 ### Option B (Legacy): Using Integrated Tool
 
-> ⚠️ Superseded by `generate_RT_report_final` — kept for reference.
+> ⚠️ Superseded by `report_generator` — kept for reference.
 
 ```bash
-cd integrated_report_tool
+cd legacy/integrated_report
 python create_config.py           # Create configuration
 python unified_report.py          # Generate report
 ```
 
 ### Option C (Legacy): Using Piero Version
 
-> ⚠️ Superseded by `generate_RT_report_final` — kept for reference.
+> ⚠️ Superseded by `report_generator` — kept for reference.
 
 ```bash
-cd generate_RT_report_piero
+cd legacy/piero_v6
 python auto_report.py             # Generate report
 ```
 
 ### Option D: Using Date Filling Tool
 
 ```bash
-cd auto_report-table-date_piero
+cd utils/date_filler
 python auto_report_table_date.py  # Fill dates and times
 ```
 
@@ -134,13 +132,13 @@ python auto_report_table_date.py  # Fill dates and times
 
 | Use Case | Recommended Tool | Reason |
 |----------|------------------|--------|
-| Report generation (any case) | **generate_RT_report_final** | Single recommended entry point, 7-stage processing |
-| Only need date/time filling | auto_report-table-date_piero | Dedicated tool, precise functionality |
-| Need fine format control | generate_RT_report_luke | Run-level replacement, complete format preservation |
-| Need to analyze table structure | find_tables_in_word | Dedicated table analysis tool |
-| Need to filter outline content | word_outline_filter | Latest version (v8.0), powerful features |
+| Report generation (any case) | **report_generator** | Single recommended entry point, 7-stage processing |
+| Only need date/time filling | utils/date_filler | Dedicated tool, precise functionality |
+| Need fine format control | utils/format_replace | Run-level replacement, complete format preservation |
+| Need to analyze table structure | utils/table_finder | Dedicated table analysis tool |
+| Need to filter outline content | utils/outline_filter | Latest version (v8.0), powerful features |
 
-## 📄 Master_Log.xlsx Field Specification (generate_RT_report_final)
+## 📄 Master_Log.xlsx Field Specification (report_generator)
 
 `main.py` reads the **active sheet** of `Master_Log.xlsx`; row 1 must be the column headers. Required columns:
 
@@ -168,12 +166,12 @@ Notes:
 2. Prepare Word template (Template.doc or Template.docx)
    ↓
 3. Run report generation
-   - Use generate_RT_report_final (recommended)
-   - Legacy alternatives: integrated_report_tool / generate_RT_report_piero
+   - Use report_generator (recommended)
+   - Legacy alternatives: legacy/integrated_report / legacy/piero_v6
    ↓
-4. (Optional) Use auto_report-table-date_piero to fill dates
+4. (Optional) Use utils/date_filler to fill dates
    ↓
-5. (Optional) Use word_outline_filter to filter content
+5. (Optional) Use utils/outline_filter to filter content
    ↓
 6. Final report: Final_Report.docx
 ```
@@ -182,11 +180,11 @@ Notes:
 
 Detailed documentation for each tool can be found in the README.md files in their respective folders:
 
-* [integrated_report_tool/README.md](integrated_report_tool/README.md) - Integrated tool complete documentation
-* [generate_RT_report_piero/README.md](generate_RT_report_piero/README.md) - Piero version documentation
-* [generate_RT_report_luke/README.md](generate_RT_report_luke/README.md) - Luke version documentation
-* [auto_report-table-date_piero/README.md](auto_report-table-date_piero/README.md) - Date tool documentation
-* [word_outline_filter/README.md](word_outline_filter/README.md) - Outline filter tool documentation
+* [legacy/integrated_report/README.md](legacy/integrated_report/README.md) - Integrated tool complete documentation
+* [legacy/piero_v6/README.md](legacy/piero_v6/README.md) - Piero version documentation
+* [utils/format_replace/README.md](utils/format_replace/README.md) - Luke version documentation
+* [utils/date_filler/README.md](utils/date_filler/README.md) - Date tool documentation
+* [utils/outline_filter/README.md](utils/outline_filter/README.md) - Outline filter tool documentation
 * [Other tools documentation](.) - See respective folders
 
 ## ⚙️ Environment Requirements
@@ -228,8 +226,8 @@ python Scripts/pywin32_postinstall.py -install
 ## 📝 Version History & Cleanup
 
 ### Convergence & Field Spec (2026-10)
-- ✅ `generate_RT_report_final` is now the single recommended report generator
-- ✅ `integrated_report_tool`, `generate_RT_report_piero`, `auto_report_v33_claude` marked **legacy** (reference only)
+- ✅ `report_generator` is now the single recommended report generator
+- ✅ `legacy/integrated_report`, `legacy/piero_v6`, `legacy/v33_claude` marked **legacy** (reference only)
 - ✅ Added `Master_Log.xlsx` field specification (see above)
 
 ### Privacy Sanitization (2026-10)
@@ -271,6 +269,6 @@ This project content is for internal use. Please ensure you understand the requi
 ---
 
 **Recommended Workflow**: 
-1. Use `generate_RT_report_final` (the single recommended entry point)
+1. Use `report_generator` (the single recommended entry point)
 2. Use standalone utilities (date filling, outline filter) as needed
-3. Legacy generators (`integrated_report_tool`, `generate_RT_report_piero`) are kept for reference only
+3. Legacy generators (`legacy/integrated_report`, `legacy/piero_v6`) are kept for reference only

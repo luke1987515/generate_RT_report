@@ -61,7 +61,7 @@ python auto_report_table_modify.py
 ## 📁 文件結構
 
 ```
-auto_report-table_modify_piero/
+utils/table_modifier/
 ├── auto_report_table_modify.py     # 主程式
 ├── Master_Log.xlsx                 # 配置文件（需自行準備）
 ├── Template.doc                    # Word 範本（需自行準備）
@@ -90,9 +90,9 @@ auto_report-table_modify_piero/
 
 ## 🤝 相關工具
 
-- [auto_report_table_date.py](../auto_report-table-date_piero/) - 日期填入工具
-- [integrated_report_tool](../integrated_report_tool/) - 整合工具
-- [find_tables_in_word](../find_tables_in_word/) - 表格檢測工具
+- [auto_report_table_date.py](../utils/date_filler/) - 日期填入工具
+- [legacy/integrated_report](../legacy/integrated_report/) - 整合工具
+- [utils/table_finder](../utils/table_finder/) - 表格檢測工具
 
 ## 📞 技術支援
 

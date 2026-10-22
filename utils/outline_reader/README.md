@@ -30,7 +30,7 @@
 python read_word_outline.py Template.doc
 
 # 方式 2: Python 代碼使用
-from read_word_outline import OutlineReader
+from utils/outline_reader import OutlineReader
 
 reader = OutlineReader('Template.doc')
 outline = reader.read_outline()
@@ -66,7 +66,7 @@ for item in outline:
 ## 📁 文件結構
 
 ```
-read_word_outline/
+utils/outline_reader/
 ├── read_word_outline.py            # 主程式
 ├── Template.doc                    # Word 範本（需自行準備）
 └── README.md                       # 本文件
@@ -118,8 +118,8 @@ read_word_outline/
 
 ## 🤝 相關工具
 
-- [word_outline_filter](../word_outline_filter/) - 大綱過濾工具
-- [find_tables_in_word](../find_tables_in_word/) - 表格檢測
+- [utils/outline_filter](../utils/outline_filter/) - 大綱過濾工具
+- [utils/table_finder](../utils/table_finder/) - 表格檢測
 
 ## 📞 技術支援
 

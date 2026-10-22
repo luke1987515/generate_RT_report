@@ -1,5 +1,5 @@
 # 整合式報告生成工具 (Unified Report Tool)
-> ⚠️ **Legacy / 舊版** — Superseded by `generate_RT_report_final`（已被 generate_RT_report_final 取代），retained for reference only（僅供參考）.
+> ⚠️ **Legacy / 舊版** — Superseded by `report_generator`（已被 report_generator 取代），retained for reference only（僅供參考）.
 
 **版本**: v1.0 整合版  
 **開發者**: 項目團隊（整合 Luke + Piero 的工作）  
@@ -86,7 +86,7 @@ python unified_report.py --config Report_Config.xlsx
 ## 📁 文件結構
 
 ```
-integrated_report_tool/
+legacy/integrated_report/
 ├── unified_report.py               # 主程式（整合邏輯）
 ├── create_config.py                # 配置創建工具
 ├── Report_Config.xlsx              # Excel 多 Sheet 配置
@@ -149,10 +149,10 @@ integrated_report_tool/
 
 ## 🤝 相關工具
 
-- [generate_RT_report_luke](../generate_RT_report_luke/) - 格式保留參考
-- [generate_RT_report_piero](../generate_RT_report_piero/) - 章節管理參考
-- [auto_report-table-date_piero](../auto_report-table-date_piero/) - 日期填入補充工具
-- [auto_report_v33_claude](../auto_report_v33_claude/) - 最新 AI 實驗版
+- [utils/format_replace](../utils/format_replace/) - 格式保留參考
+- [legacy/piero_v6](../legacy/piero_v6/) - 章節管理參考
+- [utils/date_filler](../utils/date_filler/) - 日期填入補充工具
+- [legacy/v33_claude](../legacy/v33_claude/) - 最新 AI 實驗版
 
 ## 📞 技術支援
 
